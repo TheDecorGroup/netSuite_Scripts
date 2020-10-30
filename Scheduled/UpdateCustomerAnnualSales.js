@@ -1,9 +1,12 @@
 /**
  * Module Description
  * 
- * Version    Date            Author           Remarks
+ * Version    Date            Author        Remarks
  * 1.00       02 Jan 2020     JBowyer		Update annual sales by customer
  *
+ * Version    Date: Updated   Author    Remarks
+ * 1.00       10 Oct 2020     J.C.R		Update annual sales by customer
+ * 
  */
 
 /**
@@ -63,7 +66,8 @@ function processNextCustomer(customer) {
         	
         	// Current total is different - Update all of the customer sales order fields 
         	var customerUpdate = nlapiLoadRecord('customer',customerId);
-        	
+            
+            var sales2021 = customer.getValue(allColumns[3]);
         	var sales2020 = customer.getValue(allColumns[4]);            
             var sales2019 = customer.getValue(allColumns[5]);            
             var sales2018 = customer.getValue(allColumns[6]);            
@@ -74,7 +78,8 @@ function processNextCustomer(customer) {
         	customerUpdate.setFieldValue('custentity28', sales2017);
         	customerUpdate.setFieldValue('custentity29', sales2018);
         	customerUpdate.setFieldValue('custentity30', sales2019);
-        	customerUpdate.setFieldValue('custentity32', sales2020);
+            customerUpdate.setFieldValue('custentity32', sales2020);
+            customerUpdate.setFieldValue('custentity93', sales2021);
         	customerUpdate.setFieldValue('custentity33', salesPre2017); 
         	nlapiSubmitRecord(customerUpdate, true);
         }
